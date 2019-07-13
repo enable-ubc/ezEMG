@@ -1,3 +1,12 @@
+#include <Adafruit_ATParser.h>
+#include <Adafruit_BluefruitLE_SPI.h>
+#include <Adafruit_BLEMIDI.h>
+#include <Adafruit_BLEBattery.h>
+#include <Adafruit_BLEGatt.h>
+#include <Adafruit_BLEEddystone.h>
+#include <Adafruit_BLE.h>
+#include <Adafruit_BluefruitLE_UART.h>
+
 // COMMON SETTINGS
 // ----------------------------------------------------------------------------------------------
 // These settings are used in both SW UART, HW UART and SPI mode
@@ -43,4 +52,3 @@
 #define BLUEFRUIT_SPI_CS               8
 #define BLUEFRUIT_SPI_IRQ              7
 #define BLUEFRUIT_SPI_RST              4    // Optional but recommended, set to -1 if unused
-

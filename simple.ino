@@ -4,20 +4,13 @@
 #include "BluefruitRoutines.h"
 
 //Pin numbers for switches
-#define PREVIOUS_SWITCH A0
 #define SELECT_SWITCH A1
-#define NEXT_SWITCH A2
 
 //Actions
-#define DO_PREVIOUS 1
 #define DO_SELECT   2
-#define DO_NEXT     4
 
 uint8_t readSwitches(void) {
-  return (~(digitalRead(PREVIOUS_SWITCH)*DO_PREVIOUS
-      + digitalRead(SELECT_SWITCH)*DO_SELECT
-      + digitalRead (NEXT_SWITCH)*DO_NEXT)
-     ) & (DO_PREVIOUS+ DO_SELECT+ DO_NEXT);
+  return (~(5 + digitalRead(SELECT_SWITCH)*DO_SELECT)) & (7);
 }
 
 //Translate character to keyboard keycode and transmit
@@ -42,17 +35,13 @@ void setup() {
   Serial.begin(9600); Serial.println("Debug output");
 #endif
   pinMode(SELECT_SWITCH, INPUT_PULLUP);
-  pinMode(NEXT_SWITCH, INPUT_PULLUP);
-  pinMode(PREVIOUS_SWITCH, INPUT_PULLUP);
   initializeBluefruit();
 }
 
 void loop() {
   uint8_t i=readSwitches();
+  Serial.println(i);
   switch (i) {
-    case DO_PREVIOUS: pressKeyCode('p'); break;
-    case DO_SELECT:   pressKeyCode('s'); break;
-    case DO_NEXT:     pressKeyCode('n'); break;
+    case DO_SELECT:   pressKeyCode('s'); break; // This is the key statement, use this for boolean statement. For example, if raise detected, pressKeyCode('s')
   }
 }
-
